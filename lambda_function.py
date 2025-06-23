@@ -28,12 +28,9 @@ if secret_key_b64:
     try:
 
         b64_string = secret_key_b64.strip()
-        # 2. Add missing padding if needed
         missing_padding = len(b64_string) % 4
         if missing_padding:
             b64_string += '=' * (4 - missing_padding)
-        # --- End of padding fix ---
-
         decoded_bytes = base64.b64decode(b64_string)
         secret_key_json = decoded_bytes.decode('utf-8')
         creds_dict = json.loads(secret_key_json.strip())
@@ -44,7 +41,6 @@ if secret_key_b64:
             logger.info("Firebase Admin initialized successfully from Base64 secret")
         firestore_client = firestore.client()
     except Exception as e:
-        # The error log will now be more specific if something else fails
         logger.error(f"Failed to initialize Firebase Admin from Base64: {e}", exc_info=True)
 else:
     logger.error("SECRET_KEY env var is missing!")
@@ -137,7 +133,6 @@ class CheckOutIntentHandler(AbstractRequestHandler):
         building_id = docs[0].id
         
         try:
-            # Pass the initialized client, not the secret key
             success = checkout(firestore_client, building_id, device_id)
         except Exception as e:
             logger.error(f"Unhandled exception in checkout: {e}", exc_info=True)
