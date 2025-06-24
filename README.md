@@ -25,10 +25,10 @@ This project implements an Amazon Alexa skill that facilitates the checkout proc
 
 3. **Configure environment variables** 
    ```bash
-   e.g export SECRET_KEY='{"type": "service_account", "project_id": "...", … }'
+   e.g SECRET_KEY='{"type": "service_account", "project_id": "...", … }'
    ```
 
-## Deployment
+## Deployment (zip file approach)
 
 1. **Package for AWS Lambda**  
    ```bash
@@ -47,6 +47,8 @@ This project implements an Amazon Alexa skill that facilitates the checkout proc
    - Define the `CheckOutIntent` in your interaction model with sample utterances such as:  
      - “チェックアウトしました”  
      - “Check out building”
+    
+   Note:  We've deployed our skill using docker
 
 ## Usage
 
@@ -61,9 +63,3 @@ This project implements an Amazon Alexa skill that facilitates the checkout proc
   Upon successful checkout, your changes should be applied in Firebase
 
 
-
-
-
-## License
-
-MIT License  
